@@ -1,4 +1,4 @@
-start <- function(style = 1){
+start_text <- function(style = 1){
   if (style == 1){
     cat("
 ██╗░░░░░░█████╗░░██████╗░██╗███╗░░██╗
@@ -42,8 +42,8 @@ The help command provides information about the available commands and their usa
 
 1. **rules**
    - \033[32mDescription\033[0mdsf: Disply the rules of the lab what to do and what not.
-   - \033[34mUsage\033[0m: To use the command just type: \"rules\" in the terminal.
-   - \033[31mExample\033[0m: rules.
+   - \033[34mUsage\033[0m: Type: \"rules level_number\" in the terminal.
+   - \033[31mExample\033[0m: rules 2.
 
 2. **story**
    - \033[32mDescription\033[0m: Tell you the story of the .
@@ -66,8 +66,16 @@ The help command provides information about the available commands and their usa
    - \033[31mExample\033[0m: quit.")
 }
 
-rules <- function(){
-  cat("__rules will be here__\n")
+rules <- function(level){
+  cat(paste("rules of", level, "will be here\n"))
+}
+
+story <- function(level){
+  cat(paste("story of", level, "will be here\n"))
+}
+
+start <- function(level){
+  cat(paste("will start level", level, "when i will not be lazy\n"))
 }
 
 terminal <- function(){
@@ -76,12 +84,26 @@ terminal <- function(){
     if (command == "help"){
       help()
     }
+     
+    else if (grepl("rules", command)){
+      split_v <- strsplit(command, " ")
+      after_space <- split_v[[1]][2]
+      rules(after_space)
+    }
     
-    else if (command == "rules"){
-      rules()
+    else if (grepl("story", command)){
+      split_v <- strsplit(command, " ")
+      after_space <- split_v[[1]][2]
+      story(after_space)
+    }
+    
+    else if (grepl("start", command)){
+      split_v <- strsplit(command, " ")
+      after_space <- split_v[[1]][2]
+      start(after_space)
     }
   
-    else if (command == "quit"){
+    else if (command == "quit" | command == "q"){
       break
     }
     
@@ -95,7 +117,13 @@ terminal <- function(){
   }
 }
 
-start(3)
-terminal()
+main <- function(style){
+  start_text(style)
+  terminal()
+}
+
+# change the style you can do 1 2 3 and 4 I don't know why i did it
+main(style=3) 
+
 
 
