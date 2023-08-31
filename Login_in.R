@@ -1,26 +1,5 @@
-start_text <- function(style = 1){
-  if (style == 1){
-    cat("
-██╗░░░░░░█████╗░░██████╗░██╗███╗░░██╗
-██║░░░░░██╔══██╗██╔════╝░██║████╗░██║
-██║░░░░░██║░░██║██║░░██╗░██║██╔██╗██║
-██║░░░░░██║░░██║██║░░╚██╗██║██║╚████║
-███████╗╚█████╔╝╚██████╔╝██║██║░╚███║
-╚══════╝░╚════╝░░╚═════╝░╚═╝╚═╝░░╚══╝\n")
-  }
-  else if (style == 2){
-    cat("
-╭╮
-┃┃
-┃┃╭━━┳━━┳┳━╮╱╭┳━╮╱╭━╮
-┃┃┃╭╮┃╭╮┣┫╭╮╮┣┫╭╮╮┃╭╯
-┃╰┫╰╯┃╰╯┃┃┃┃┃┃┃┃┃┃┃┃
-╰━┻━━┻━╮┣┻╯╰╯╰┻╯╰╯╰╯
-╱╱╱╱╱╭━╯┃
-╱╱╱╱╱╰━━╯\n")
-  }
-  else if (style == 3){
-    cat("
+start_text <- function(){
+cat("
 ██╗░░░░░░█████╗░░██████╗░██╗███╗░░██╗  ██╗███╗░░██╗  ██████╗░
 ██║░░░░░██╔══██╗██╔════╝░██║████╗░██║  ██║████╗░██║  ██╔══██╗
 ██║░░░░░██║░░██║██║░░██╗░██║██╔██╗██║  ██║██╔██╗██║  ██████╔╝
@@ -33,7 +12,6 @@ start_text <- function(style = 1){
   cat("\033[32mCreated by idan hajbeko\033[0m\n")
   cat("\033[32mThis is like hack the box just it bad i made it and it in R\033[0m\n")
   cat("\033[32mUse the commands in that order to start help, levels, rules, story, start\033[0m\n")
-}
 
 help <- function(){
   cat("**Help Command**
@@ -75,7 +53,9 @@ story <- function(level){
 }
 
 start <- function(level){
-  cat(paste("will start level", level, "when i will not be lazy\n"))
+  if (level == "5"){
+    source("C:/Users/barry/Downloads/login_in_R-main/login_in_R-main/labs/lab_5.R")
+  }
 }
 
 terminal <- function(){
@@ -88,22 +68,48 @@ terminal <- function(){
     else if (grepl("rules", command)){
       split_v <- strsplit(command, " ")
       after_space <- split_v[[1]][2]
-      rules(after_space)
+      if (is.na(after_space) != TRUE){
+        rules(after_space)
+      }
+      else if (after_space %in% levels_list != TRUE && !is.na(after_space)){
+        cat("\033[31mplease specify a valid level\033[0m\n")
+      }
+      else{
+        cat("\033[31mplease specify the level\033[0m\n")
+      }
     }
     
     else if (grepl("story", command)){
       split_v <- strsplit(command, " ")
       after_space <- split_v[[1]][2]
-      story(after_space)
+      if (is.na(after_space) != TRUE){
+        story(after_space)
+      }
+      else if (after_space %in% levels_list != TRUE && !is.na(after_space)){
+        cat("\033[31mplease specify a valid level\033[0m\n")
+      }
+      else{
+        cat("\033[31mplease specify the level\033[0m\n")
+      }
     }
     
     else if (grepl("start", command)){
       split_v <- strsplit(command, " ")
       after_space <- split_v[[1]][2]
-      start(after_space)
+      if (!is.na(after_space) && after_space %in% levels_list){
+        start(after_space)
+      }
+      
+      else if (after_space %in% levels_list != TRUE && !is.na(after_space)){
+        cat("\033[31mplease specify a valid level\033[0m\n")
+      }
+      else{
+        cat("\033[31mplease specify the level\033[0m\n")
+      }
     }
   
     else if (command == "quit" | command == "q"){
+      cat("bye :)")
       break
     }
     
@@ -117,13 +123,13 @@ terminal <- function(){
   }
 }
 
-main <- function(style){
-  start_text(style)
+main <- function(){
+  levels_list <<- 1:5
+  start_text()
   terminal()
 }
 
-# change the style you can do 1 2 3 and 4 I don't know why i did it
-main(style=3) 
+main() 
 
 
 
