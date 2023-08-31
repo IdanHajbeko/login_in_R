@@ -33,10 +33,10 @@ get_flag <- function(){
   
 }
 
-main_lab_1 <- function(){
+main_lab_5 <- function(){
   get_username_and_password()
   get_flag()
 }
 
-main_lab_1()
+main_lab_5()
 
