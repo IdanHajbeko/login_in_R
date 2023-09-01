@@ -19,7 +19,7 @@ help <- function(){
 The help command provides information about the available commands and their usage. Here is a list of commands and a brief description of each:
 
 1. **rules**
-   - \033[32mDescription\033[0mdsf: Disply the rules of the lab what to do and what not.
+   - \033[32mDescription\033[0m : Disply the rules of the lab what to do and what not.
    - \033[34mUsage\033[0m: Type: \"rules level_number\" in the terminal.
    - \033[31mExample\033[0m: rules 2.
 
@@ -37,11 +37,27 @@ The help command provides information about the available commands and their usa
    - \033[32mDescription\033[0m: Start the lab with the level you choose.
    - \033[34mUsage\033[0m: Type: \"start level_number\".
    - \033[31mExample\033[0m: start 3.
-  
-5. **quit**
+   
+5. **skill**
    - \033[32mDescription\033[0m: Quit the programm.
-   - \033[34mUsage\033[0m: Just type: \"quit\" in the terminal.
-   - \033[31mExample\033[0m: quit.")
+   - \033[34mUsage\033[0m: Just type: \"quit\" or \"q\" in the terminal.
+   - \033[31mExample\033[0m: quit.
+   
+6. **stat**
+   - \033[32mDescription\033[0m: Quit the programm.
+   - \033[34mUsage\033[0m: Just type: \"quit\" or \"q\" in the terminal.
+   - \033[31mExample\033[0m: quit.
+   
+7. **check**
+   - \033[32mDescription\033[0m: Quit the programm.
+   - \033[34mUsage\033[0m: Just type: \"quit\" or \"q\" in the terminal.
+   - \033[31mExample\033[0m: quit.
+  
+8. **quit**
+   - \033[32mDescription\033[0m: Quit the programm.
+   - \033[34mUsage\033[0m: Just type: \"quit\" or \"q\" in the terminal.
+   - \033[31mExample\033[0m: quit.
+")
 }
 
 rules <- function(level){
@@ -55,6 +71,9 @@ story <- function(level){
 start <- function(level){
   if (level == "5"){
     source("C:/Users/barry/Downloads/login_in_R-main/login_in_R-main/labs/lab_5.R")
+  }
+  if (level == "1"){
+    source("C:/Users/barry/Downloads/login_in_R-main/login_in_R-main/labs/lab_1.R")
   }
 }
 
@@ -106,6 +125,10 @@ terminal <- function(){
       else{
         cat("\033[31mplease specify the level\033[0m\n")
       }
+    }
+    
+    else if(command == "levels"){
+      cat(levels_list)
     }
   
     else if (command == "quit" | command == "q"){
